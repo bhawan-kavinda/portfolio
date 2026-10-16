@@ -25,6 +25,12 @@ canvas{display:block;width:100%;height:100%}
 .pad .u{grid-column:2}.pad .l{grid-column:1;grid-row:2}.pad .d{grid-column:2;grid-row:2}.pad .r{grid-column:3;grid-row:2}
 #panel,#start{position:absolute;inset:0;background:rgba(20,20,18,.55);display:none;align-items:center;justify-content:center;padding:14px}
 #panel.on,#start.on{display:flex}.hb{display:flex;gap:6px}.hb button{padding:5px 9px;font-size:.78rem;border-radius:7px}
+#gear{font-size:1rem;line-height:1.2}
+#toggle{font-weight:700;color:var(--accent);border-color:var(--accent)}
+.gw{position:relative}
+#menu{position:absolute;left:0;bottom:calc(100% + 8px);display:flex;flex-direction:column;gap:6px;padding:8px;background:var(--card);border:1.5px solid var(--line);border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.35);white-space:nowrap}
+#menu[hidden]{display:none}
+#menu button{text-align:left}
 .card{background:var(--card);border:2px solid var(--ink);border-radius:8px;padding:16px;max-width:380px;width:100%;animation:pop .18s ease-out}
 @keyframes pop{from{transform:scale(.92);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.card{animation:none}}

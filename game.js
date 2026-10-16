@@ -8,7 +8,10 @@ var ROOMS=[
 var $=function(i){return document.getElementById(i)};
 function html(r){return '<h2>'+r.label+'</h2><p>'+r.intro+'</p><ul>'+r.items.map(function(i){return '<li>'+i+'</li>'}).join('')+'</ul>'}
 $('plain').innerHTML=ROOMS.map(function(r){return '<section>'+html(r)+'</section>'}).join('');
-$('toggle').onclick=function(){var b=document.body.classList.toggle('plain');this.textContent=b?'Play game':'Skip game'};
+$('toggle').onclick=function(){var b=document.body.classList.toggle('plain');this.textContent=b?'Play 🎮':'Skip ⏭'};
+var gb=$('gear'),mn=$('menu');
+gb.onclick=function(){mn.hidden=!mn.hidden;gb.setAttribute('aria-expanded',String(!mn.hidden))};
+document.addEventListener('pointerdown',function(e){if(!mn.hidden&&!e.target.closest('.gw')){mn.hidden=true;gb.setAttribute('aria-expanded','false')}});
 
 var cv=$('c'),g=cv.getContext('2d'),WW=1400,WH=2400,K=1,vw=480,vh=360;
 var P=[[700,2330],[650,1784],[800,1790],[880,1620],[950,1514],[780,1480],[700,1330],[620,1234]];
