@@ -11,14 +11,14 @@
 <main>
 <header>
 <h1>Nimal's Village 2D <small style="font-weight:400;opacity:.7">(demo)</small></h1>
-<div class="hb"><button id="fsb" type="button" aria-label="Full screen">⛶</button><button id="snd" type="button">Sound: on</button><button id="toggle" type="button">Skip game</button></div>
+<div class="hb"><button id="fsb" type="button" aria-label="Full screen">⛶</button><button id="snd" type="button">Sound: on</button><button id="drv" type="button">Drive: Auto</button><button id="toggle" type="button">Skip game</button></div>
 </header>
 <div id="game">
 <div class="stage">
 <canvas id="c" aria-label="Walkable 2D portfolio village"></canvas>
 <div id="hud"></div>
-<button id="vbtn" type="button" hidden>👁 View</button>
 <button id="jbtn" type="button" hidden></button>
+<button id="mbtn" type="button" hidden aria-label="Hold to see map">🗺</button>
 <div id="wheel" hidden aria-label="Steering wheel"><img src="wheel.svg" width="84" height="84" alt="" draggable="false"></div>
 <div id="panel" role="dialog" aria-modal="true"><div class="card" id="card"></div></div>
 <div id="start" class="on"><div class="card"><h2>Welcome to the village</h2><p>Walk the path, collect every coin and visit all three houses.</p><button type="button" id="go">Start</button></div></div>
