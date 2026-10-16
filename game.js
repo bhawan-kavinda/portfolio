@@ -1,8 +1,8 @@
 // ---- Edit your content here ----
 var ROOMS=[
- {label:'Skills',x:650,y:1750,color:'#1f6f78',intro:'මම පාවිච්චි කරන දේවල්.',items:['HTML / CSS / JavaScript','React','Python','UI design basics']},
- {label:'Projects',x:950,y:1480,color:'#b8872b',intro:'මම හදපු දේවල්.',items:['Project A: short one-line result','Project B: short one-line result','Project C: short one-line result']},
- {label:'Contact',x:620,y:1200,color:'#7a3f6b',intro:'මට කතා කරන්න.',items:['email@example.com','github.com/your-name','linkedin.com/in/your-name']}
+ {label:'Skills',x:650,y:1750,color:'#1f6f78',intro:'Things I use.',items:['HTML / CSS / JavaScript','React','Python','UI design basics']},
+ {label:'Projects',x:950,y:1480,color:'#b8872b',intro:'Things I have built.',items:['Project A: short one-line result','Project B: short one-line result','Project C: short one-line result']},
+ {label:'Contact',x:620,y:1200,color:'#7a3f6b',intro:'Get in touch.',items:['email@example.com','github.com/your-name','linkedin.com/in/your-name']}
 ];
 // --------------------------------
 var $=function(i){return document.getElementById(i)};
