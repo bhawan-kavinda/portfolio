@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Quick View - Village Walk</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#efe6d0;--card:#f8f1dc;--fg:#2b2218;--mut:#7a6a52;--line:rgba(43,34,24,.18);--btn:#5b3f8c;--chip:#e9dcf7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17111f;--card:#211a2f;--fg:#efe6d0;--mut:#a99dbd;--line:rgba(239,230,208,.16);--chip:#3a2d57}}
+:root[data-theme="dark"]{--bg:#17111f;--card:#211a2f;--fg:#efe6d0;--mut:#a99dbd;--line:rgba(239,230,208,.16);--chip:#3a2d57}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 60px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,-apple-system,sans-serif}
+.mono{font-family:"Courier New",ui-monospace,monospace}
+header{background:var(--btn);color:#fff;border-bottom:4px solid #000;padding:18px 16px 14px;text-align:center}
+header h1{margin:0;font-size:20px}header p{margin:4px 0 12px;font-size:13px;opacity:.85}
+#av{display:block;margin:0 auto 10px;width:96px;height:96px;image-rendering:pixelated;background:rgba(0,0,0,.25);border:4px solid #000;border-radius:10px;box-shadow:0 0 0 3px #ffd84a}
+.play{display:inline-block;background:#c43a3a;color:#fff;text-decoration:none;font-weight:700;border:3px solid #000;border-radius:8px;padding:6px 16px;box-shadow:inset 0 3px 0 rgba(255,255,255,.28),inset 0 -4px 0 rgba(0,0,0,.35)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;padding:8px 12px;background:var(--bg);border-bottom:2px dashed var(--line)}
+nav::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:-1}
+nav a{flex:none;text-decoration:none;color:var(--fg);background:var(--chip);border:2px solid #000;border-radius:6px;padding:2px 10px;font-weight:700;font-size:13px}
+nav a.on{background:var(--btn);color:#fff}
+main{max-width:640px;margin:0 auto;padding:14px 12px 40px;display:grid;gap:16px}
+section.bk{background:var(--card);border:4px solid #000;border-radius:8px;box-shadow:0 0 0 3px var(--btn);overflow:hidden}
+section.bk>h2{margin:0;background:var(--btn);color:#fff;padding:9px 14px;font-size:15px;border-bottom:4px solid #000}
+.in{padding:4px 14px 12px}
+.sec h3{margin:14px 0 6px;font-size:12px;color:var(--btn);letter-spacing:.5px}.sec h3::before{content:"$ ";opacity:.7}
+dl{margin:0;display:grid;grid-template-columns:minmax(84px,32%) 1fr;column-gap:12px}
+dt,dd{margin:0;padding:6px 0;border-bottom:1px solid var(--line)}dt{color:var(--mut);font-size:13px}dd{font-weight:600;overflow-wrap:anywhere}
+dl>:nth-last-child(-n+2){border-bottom:0}
+p{margin:0 0 8px}a{color:var(--btn)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}.tags span{background:var(--chip);border:2px solid #000;border-radius:4px;padding:0 9px;font-weight:700;font-size:13px}
+ul{margin:0;padding:0;list-style:none}li{position:relative;padding:2px 0 2px 18px}li::before{content:"";position:absolute;left:3px;top:.8em;width:6px;height:6px;background:var(--btn)}
+.lnks{display:grid;gap:8px}.lnk{display:block;text-decoration:none;color:var(--fg);background:var(--chip);border:2px solid #000;border-radius:6px;padding:7px 12px;box-shadow:0 3px 0 rgba(0,0,0,.35)}
+.lnk b{display:block;font-size:14px}.lnk span{font-size:13px;color:var(--mut)}
+details{background:var(--chip);border:2px solid #000;border-radius:6px;margin-bottom:8px;box-shadow:0 3px 0 rgba(0,0,0,.35)}
+summary{cursor:pointer;list-style:none;padding:8px 12px;display:flex;align-items:center;gap:8px;font-weight:700}
+summary::-webkit-details-marker{display:none}summary::after{content:"+";font-size:18px}details[open] summary::after{content:"-"}
+summary em{font-style:normal;font-size:11px;background:var(--btn);color:#fff;border-radius:4px;padding:0 7px;margin-left:auto}
+details>.in{background:var(--card);border-top:2px solid #000;padding:6px 12px 8px}
+.sm{color:var(--mut);font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:12px;padding:0 12px 30px}
+</style>
+</head>
+<body>
+<header>
+<canvas id="av" width="24" height="24" aria-label="Game character"></canvas>
+<h1 class="mono" id="nm">Quick View</h1>
+<p id="sb">All the details on one page</p>
+<a class="play mono" href="index.html#play">&#9654; Play the village game</a>
+</header>
+<nav id="nav" class="mono"></nav>
+<main id="main"></main>
+<footer class="mono">Same data as the village books (json/*.json)</footer>
+<script>
+/* Sections = the same json files the game books use. Add a line here + a json file to add a section. */
+const SECS=[['home','Home'],['school','School'],['lab','Science Lab'],['museum','Museum'],['tower','Comm Tower'],['portoffice','Port Office']];
+const cache={};
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const safe=u=>u&&/^(https?:|mailto:|tel:)/i.test(u);
+const getJ=async n=>{if(cache[n])return cache[n];const r=await fetch('json/'+n+'.json');if(!r.ok)throw new Error(r.status);return cache[n]=await r.json()};
+const fail=n=>el('p','sm','Could not load json/'+n+'.json (if you opened this file directly, use a local server or GitHub Pages).');
+function body(d,into){
+ for(const s of d.sections||[]){const sec=el('div','sec'),it=s.items||[];sec.append(el('h3','mono',s.heading||''));
+  if(s.type==='fields'){const dl=el('dl');for(const f of it){dl.append(el('dt','',f.label));const dd=el('dd');
+    if(safe(f.url)){const a=el('a','',f.value);a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';dd.append(a)}else dd.textContent=f.value;dl.append(dd)}sec.append(dl)}
+  else if(s.type==='tags'){const w=el('div','tags');for(const x of it)w.append(el('span','',x));sec.append(w)}
+  else if(s.type==='list'){const u=el('ul');for(const x of it)u.append(el('li','',x));sec.append(u)}
+  else if(s.type==='links'){const w=el('div','lnks');for(const x of it){const ok=safe(x.url),a=el(ok?'a':'div','lnk');if(ok){a.href=x.url;a.target='_blank';a.rel='noopener noreferrer'}
+    a.append(el('b','',x.label+(ok?' \u2197':'')));if(x.desc)a.append(el('span','',x.desc));w.append(a)}sec.append(w)}
+  else if(s.type==='cards'){for(const x of it){const dt=el('details'),sm=el('summary','',x.title||'');if(x.tag)sm.append(el('em','',x.tag));dt.append(sm);
+    const box=el('div','in');if(x.summary)box.append(el('p','',x.summary));dt.append(box);
+    if(x.file){let done=0;dt.addEventListener('toggle',async()=>{if(!dt.open||done)return;done=1;
+      try{const pd=await getJ(x.file),w=el('div');body(pd,w);box.append(w)}catch(e){done=0;box.append(fail(x.file))}})}
+    sec.append(dt)}}
+  else for(const x of it)sec.append(el('p','',x));
+  into.append(sec)}}
+(async()=>{
+ const main=document.getElementById('main'),nav=document.getElementById('nav');
+ const res=await Promise.all(SECS.map(([n])=>getJ(n).then(d=>d,()=>null)));
+ SECS.forEach(([n,label],i)=>{
+  const a=el('a','',label);a.href='#'+n;nav.append(a);
+  const sec=el('section','bk');sec.id=n;sec.append(el('h2','mono',label));const in_=el('div','in');
+  if(res[i])body(res[i],in_);else in_.append(fail(n));sec.append(in_);main.append(sec)});
+ if(res[0]){document.getElementById('nm').textContent=res[0].title||'Quick View';document.title=(res[0].title||'Portfolio')+' - Quick View'}
+ const links=[...nav.children],secs=SECS.map(([n])=>document.getElementById(n));
+ const spy=()=>{const y=scrollY+90;let k=0;secs.forEach((s,i)=>{if(s.offsetTop<=y)k=i});links.forEach((a,i)=>a.classList.toggle('on',i===k));links[k].scrollIntoView({block:'nearest',inline:'center'})};
+ addEventListener('scroll',spy,{passive:true});spy();
+})();
+/* same pixel character as the game player (p.c in script.js) */
+(()=>{const C={hair:'#3a2210',skin:'#f2c79a',shirt:'#d83a3a',pants:'#2a2a6a'};
+ const dk=(h,k)=>{const n=parseInt(h.slice(1),16);return 'rgb('+[n>>16&255,n>>8&255,n&255].map(v=>Math.min(255,v*k|0)).join(',')+')'};
+ const ctx=document.getElementById('av').getContext('2d'),P=(c,a,b,w,h)=>{ctx.fillStyle=c;ctx.fillRect(a,b,w,h)};
+ const K='#1a1020',x=4,y=7,sk=C.skin,hr=C.hair,hd=dk(hr,.7),sh=dk(C.shirt,.72),pa=dk(C.pants,.72);
+ P('rgba(0,0,0,.3)',x+3,y+14,10,2);P(K,x+4,y+10,4,5);P(K,x+9,y+10,4,5);P(C.pants,x+5,y+11,2,2);P(C.pants,x+10,y+11,2,2);P(pa,x+6,y+11,1,2);P(pa,x+11,y+11,1,2);P('#4a3030',x+5,y+13,2,1);P('#4a3030',x+10,y+13,2,1);
+ P(K,x,y+7,4,5);P(C.shirt,x+1,y+8,2,2);P(sk,x+1,y+10,2,1);P(K,x+13,y+7,4,5);P(sh,x+14,y+8,2,2);P(sk,x+14,y+10,2,1);
+ P(K,x+3,y+6,11,5);P(C.shirt,x+4,y+7,9,3);P(sh,x+11,y+7,2,3);P(sh,x+4,y+9,9,1);
+ P(K,x+3,y,11,7);P(sk,x+4,y+1,9,5);P(dk(sk,.86),x+4,y+5,9,1);
+ P(hr,x+4,y+1,9,2);P(hd,x+4,y+2,9,1);P(dk(hr,1.35),x+5,y+1,3,1);P(hr,x+4,y+3,1,2);P(hr,x+12,y+3,1,2);P(K,x+6,y+3,1,2);P(K,x+10,y+3,1,2);P('#f0a090',x+5,y+5,1,1);P('#f0a090',x+11,y+5,1,1);P(dk(sk,.7),x+8,y+5,1,1)})();
+</script>
+</body>
+</html>

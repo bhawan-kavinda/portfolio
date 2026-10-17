@@ -117,19 +117,19 @@ function blocked(x,y,me){for(const[ax,ay]of[[-5,-4],[5,-4],[-5,2],[5,2]])if(soli
 
 const keys={up:0,down:0,left:0,right:0};
 const KM={ArrowUp:'up',w:'up',W:'up',ArrowDown:'down',s:'down',S:'down',ArrowLeft:'left',a:'left',A:'left',ArrowRight:'right',d:'right',D:'right'};
-addEventListener('keydown',e=>{if(sheetOpen){if(e.key==='Escape')closeSheet();return}if(KM[e.key]){keys[KM[e.key]]=1;e.preventDefault()}else if([' ','Enter','z','Z'].includes(e.key)){if(!e.repeat)act();e.preventDefault()}});
+addEventListener('keydown',e=>{if(startOpen){if(e.key==='Enter'||e.key===' '){e.preventDefault();closeStart()}return}if(sheetOpen){if(e.key==='Escape')closeSheet();return}if(KM[e.key]){keys[KM[e.key]]=1;e.preventDefault()}else if([' ','Enter','z','Z'].includes(e.key)){if(!e.repeat)act();e.preventDefault()}});
 addEventListener('keyup',e=>{if(KM[e.key])keys[KM[e.key]]=0});
 addEventListener('contextmenu',e=>e.preventDefault());
 document.querySelectorAll('[data-k]').forEach(b=>{const k=b.dataset.k;b.addEventListener('pointerdown',e=>{e.preventDefault();keys[k]=1});['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>keys[k]=0))});
 document.getElementById('a').addEventListener('pointerdown',e=>{e.preventDefault();act()});
 document.getElementById('au').addEventListener('pointerdown',e=>{e.preventDefault();if(auto)auto=null;else startAuto()});
 
-let dlg=null,t=0,sheetOpen=false;
+let dlg=null,t=0,sheetOpen=false,startOpen=!/play/.test(location.hash);
 const D=document.getElementById('dlg'),TX=document.getElementById('tx');
 function show(){dlg.f=dlg.n.l[dlg.i];dlg.p=0;document.getElementById('nm').textContent=dlg.n.name;TX.textContent='';D.classList.remove('done');D.hidden=false}
 function typeDlg(){if(dlg&&dlg.p<dlg.f.length){dlg.p+=.7;const q=Math.min(dlg.f.length,dlg.p|0);TX.textContent=dlg.f.slice(0,q);if(q>=dlg.f.length)D.classList.add('done')}}
 function act(){
- if(sheetOpen)return;
+ if(sheetOpen||startOpen)return;
  if(over){restart();return}
  if(dlg){if(dlg.p<dlg.f.length){dlg.p=dlg.f.length;TX.textContent=dlg.f;D.classList.add('done');return}dlg.i++;if(dlg.i>=dlg.n.l.length){dlg=null;D.hidden=true}else show();return}
  if(room&&faceBook()){openSheet(BOOKS[room.i].f);return}
@@ -375,3 +375,9 @@ addEventListener('resize',fit);fit();
 let last=performance.now(),acc=0;
 function loop(ts){acc+=Math.min(ts-last,100);last=ts;while(acc>=16.67){upd();acc-=16.67}draw();lbl();typeDlg();hud();requestAnimationFrame(loop)}
 requestAnimationFrame(loop);
+
+/* start popup: Play the game / Quick view (quick.html). index.html#play skips it. */
+const ST=document.getElementById('start');
+function closeStart(){startOpen=false;ST.hidden=true}
+ST.hidden=!startOpen;
+document.getElementById('st-play').addEventListener('click',closeStart);

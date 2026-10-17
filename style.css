@@ -72,3 +72,11 @@ small{opacity:.7;font-size:11px;text-align:center;line-height:1.4;padding:0 6px}
 .card .ch{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .card em{flex:none;font:700 11px "Courier New",ui-monospace,monospace;font-style:normal;background:var(--btn);color:#fff;border-radius:4px;padding:0 7px}
 .card p.sm{font-size:12px}
+
+#start{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));background:rgba(8,5,16,.8)}
+#start[hidden]{display:none}
+.st-card{width:min(100%,400px);text-align:center;background:var(--sh-bg);color:var(--sh-fg);border:4px solid #000;border-radius:8px;box-shadow:0 0 0 3px var(--btn),0 14px 36px rgba(0,0,0,.55);padding:22px 20px 18px;animation:shin .18s ease-out}
+.st-card h2{margin:0 0 6px;font:700 20px/1.3 "Courier New",ui-monospace,monospace}
+.st-card p{margin:0 0 18px;color:var(--sh-mut);font-size:14px}
+#st-play{width:100%;height:68px;border-radius:12px;background:#c43a3a;font-size:20px;letter-spacing:.5px}
+#st-quick{display:inline-block;margin-top:16px;padding:6px 8px;color:var(--sh-mut);font-size:14px;text-underline-offset:3px;-webkit-tap-highlight-color:transparent}
