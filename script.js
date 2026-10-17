@@ -164,14 +164,14 @@ initFoes();
 const spl=[];
 function splash(x,y){for(let i=0;i<10;i++)spl.push({x,y,vx:(rnd()-.5)*2,vy:-1-rnd()*1.5,l:22})}
 function bfs(sx,sy,ok,goal){const q=[[sx,sy]],pr=new Map([[sx+','+sy,null]]);while(q.length){const[x,y]=q.shift();if(goal(x,y)){const r=[];let k=x+','+y;while(k){r.unshift(k.split(',').map(Number));k=pr.get(k)}return r}for(const[a,b]of[[1,0],[-1,0],[0,1],[0,-1]]){const nx=x+a,ny=y+b,kk=nx+','+ny;if(!pr.has(kk)&&ok(nx,ny)){pr.set(kk,x+','+y);q.push([nx,ny])}}}return null}
-function startAuto(){if(curse||over||dlg)return;
- if(room){const c=bfs(Math.round(p.x/4),Math.round(p.y/4),(x,y)=>x>0&&x<56&&y>12&&y<41&&!rblocked(x*4,y*4),(x,y)=>x===28&&y===39);if(c)auto={path:c.map(([x,y])=>[x*4,y*4]),chain:1};return}
+function startAuto(){if(curse||over||dlg||sheetOpen)return;
+ if(room){if(BOOKS[room.i]&&!faceBook()&&goBook())return;const c=bfs(Math.round(p.x/4),Math.round(p.y/4),(x,y)=>x>0&&x<56&&y>12&&y<41&&!rblocked(x*4,y*4),(x,y)=>x===28&&y===39);if(c)auto={path:c.map(([x,y])=>[x*4,y*4]),chain:1};return}
  if(qi>=Q.length)return;
  const h=houses.find(h=>h[2]===Q[qi]),dtx=h[0]+((DXs[h[2]]||26)>>4),dty=h[1]+2,sx=p.x/T|0,sy=p.y/T|0,road=(x,y)=>!!m[y]&&m[y][x]===1,goal=(x,y)=>x===dtx&&y===dty;
  let a=[[sx,sy]];if(!road(sx,sy))a=bfs(sx,sy,(x,y)=>!!m[y]&&m[y][x]!==undefined&&!SOL[m[y][x]]&&m[y][x]!==8&&m[y][x]!==2,road);
  if(!a)return;const e=a[a.length-1],b=bfs(e[0],e[1],(x,y)=>road(x,y)||goal(x,y),goal);if(!b)return;
  auto={path:a.concat(b).map(([x,y])=>[x*T+8,y*T+8])}}
-function autoDir(){const a=auto;if(!a.path.length){auto=null;return[0,0]}const w=a.path[0],ex=w[0]-p.x,ey=w[1]-p.y;if(Math.abs(ex)<2&&Math.abs(ey)<2){a.path.shift();a.st=0;return autoDir()}if((a.st=(a.st||0)+1)>300){auto=null;return[0,0]}return Math.abs(ex)>=Math.abs(ey)?[Math.sign(ex),0]:[0,Math.sign(ey)]}
+function autoDir(){const a=auto;if(!a.path.length){if(a.face!=null)p.d=a.face;if(a.open){const f=a.open;setTimeout(()=>{if(room&&!dlg&&faceBook())openSheet(f)},400)}auto=null;return[0,0]}const w=a.path[0],ex=w[0]-p.x,ey=w[1]-p.y;if(Math.abs(ex)<2&&Math.abs(ey)<2){a.path.shift();a.st=0;return autoDir()}if((a.st=(a.st||0)+1)>300){auto=null;return[0,0]}return Math.abs(ex)>=Math.abs(ey)?[Math.sign(ex),0]:[0,Math.sign(ey)]}
 function upd(){t++;for(let i=spl.length-1;i>=0;i--){const q=spl[i];q.x+=q.vx;q.y+=q.vy;q.vy+=.12;if(--q.l<=0)spl.splice(i,1)}if(room){updRoom();return}
  for(const n of npcs){if(n.st||(dlg&&dlg.n===n))continue;
  {const ex=n.x-p.x,ey=n.y-p.y;if(p.anim>0&&Math.hypot(ex,ey)<30){const v=p.d<2,sg=v?(ex>=0?1:-1):(ey>=0?1:-1);for(const q of[sg,-sg]){const a=v?q:0,b=v?0:q,nx=n.x+a*.9,ny=n.y+b*.9;if(!blocked(nx,ny,n)){n.x=nx;n.y=ny;n.anim+=.1;n.d=a>0?3:a<0?2:b>0?0:1;break}}n.vx=n.vy=0;n.w=20;continue}}
@@ -218,9 +218,9 @@ function draw(){if(room){drawRoom();return}
 
 let room=null,out=null;
 function chkDoor(){const tx=p.x/T|0,ty=p.y/T|0;if(!m[ty]||m[ty][tx]!==8)return;
- const i=houses.findIndex(([hx,hy,hc])=>{const a=DXs[hc]||26;return ty===hy+2&&tx>=hx+(a>>4)&&tx<=hx+((a+11)>>4)});if(i<0)return;seen.add(i);if(houses[i][2]===Q[qi])qi++;auto=null;
+ const i=houses.findIndex(([hx,hy,hc])=>{const a=DXs[hc]||26;return ty===hy+2&&tx>=hx+(a>>4)&&tx<=hx+((a+11)>>4)});if(i<0)return;seen.add(i);if(houses[i][2]===Q[qi])qi++;const wa=!!auto;auto=null;
  const c=houses[i][2],r=RES2[c];out={x:houses[i][0]*T+(DXs[c]||26)+6,y:(houses[i][1]+3)*T+10};
- room={i:c,npc:{x:NP[c][0],y:NP[c][1],d:2,anim:0,name:r[0],c:r[1],l:r[2]}};p.x=112;p.y=140;p.d=1;p.anim=0}
+ room={i:c,npc:{x:NP[c][0],y:NP[c][1],d:2,anim:0,name:r[0],c:r[1],l:r[2]}};p.x=112;p.y=140;p.d=1;p.anim=0;if(wa&&BOOKS[c])goBook()}
 function rblocked(x,y){for(const[ax,ay]of[[-5,-4],[5,-4],[-5,2],[5,2]]){const cx=x+ax,cy=y+ay;
  if(cx<4||cx>220||cy<50||cy>166||(cy>158&&(cx<92||cx>132)))return true;
  for(const[a,b,w,h]of FURS[room.i])if(cx>=a&&cx<a+w&&cy>=b&&cy<b+h)return true}
@@ -307,14 +307,16 @@ function drawRoom(){const i=room.i;
  bookHint(i);g.restore()}
 /* ===== Book + sheet =====
    BOOKS[houseType] = { x,y: book centre inside the room, r: [x,y,w,h] area the player must face, f: json/<f>.json }
+   s: spot where AUTO walks to, d: direction to face there (0 down,1 up,2 left,3 right)
    To add a book in another house: add an entry here and create json/<name>.json */
-const BOOKS={4:{x:112,y:92,r:[92,76,40,32],f:'home'}};
+const BOOKS={4:{x:112,y:92,r:[92,76,40,32],s:[112,112],d:1,f:'home'}};
 const SH=document.getElementById('sheet'),SHB=document.getElementById('sh-body'),SHT=document.getElementById('sh-title'),SHS=document.getElementById('sh-sub'),SHA=document.getElementById('sh-av'),shCache={};
 function faceBook(){const b=room&&BOOKS[room.i];if(!b)return false;const v=[[0,1],[0,-1],[-1,0],[1,0]][p.d],fx=p.x+v[0]*14,fy=p.y+v[1]*14,[a,c,w,h]=b.r;return fx>=a&&fx<=a+w&&fy>=c&&fy<=c+h}
 function bookSprite(i){const b=BOOKS[i];if(!b)return;const x=b.x-7,y=b.y-5;
  P(g,'rgba(0,0,0,.3)',x+1,y+9,14,2);O(g,'#5b3f8c',x,y,14,9);P(g,'#3a2868',x,y,3,9);P(g,'#7a5cc0',x+3,y,11,2);
  P(g,'#ffd84a',x+6,y+3,6,1);P(g,'#ffd84a',x+6,y+5,4,1);P(g,'#f4ecd0',x+3,y+8,11,1);
  if(!sheetOpen){const q=[[b.x-10,b.y-9],[b.x+10,b.y-8],[b.x+1,b.y-12]][(t>>3)%3];P(g,'#fff6a8',q[0],q[1],1,3);P(g,'#fff6a8',q[0]-1,q[1]+1,3,1)}}
+function goBook(){const b=BOOKS[room.i],sx=b.s[0]/4,sy=b.s[1]/4,c=bfs(Math.round(p.x/4),Math.round(p.y/4),(x,y)=>x>0&&x<56&&y>12&&y<41&&!rblocked(x*4,y*4),(x,y)=>x===sx&&y===sy);if(!c)return false;auto={path:c.map(([x,y])=>[x*4,y*4]),face:b.d,open:b.f};return true}
 function bookHint(i){const b=BOOKS[i];if(b&&!sheetOpen&&!dlg&&faceBook())bub(g,b.x,b.y-34)}
 function drawAvatar(){const a=SHA.getContext('2d');a.clearRect(0,0,24,24);drawChar(a,12,22,0,0,p.c)}
 function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
