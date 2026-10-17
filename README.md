@@ -1,30 +1,25 @@
-# Portfolio
+<p align="center">
+  <img src="svg/banner.svg" alt="Village Walk - 16-bit Demo" width="100%">
+</p>
 
-An interactive portfolio: walk or drive a jeep around a village and visit a house for each section (Skills, Projects, Contact).
+<p align="center">
+  <img alt="HTML" src="https://img.shields.io/badge/HTML5-5b3f8c?style=flat-square&logo=html5&logoColor=white">
+  <img alt="CSS" src="https://img.shields.io/badge/CSS3-5b3f8c?style=flat-square&logo=css3&logoColor=white">
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-5b3f8c?style=flat-square&logo=javascript&logoColor=white">
+  <img alt="License" src="https://img.shields.io/badge/license-All%20Rights%20Reserved-c43a3a?style=flat-square">
+</p>
 
-## Run
+A tiny 16-bit style village you can walk around in, built with plain HTML, CSS and JavaScript on a single canvas. Talk to villagers, explore the map, and dodge the foes after dark.
 
-Open `index.html` in a browser. No build step.
+- 🎮 Keyboard and on-screen touch controls
+- 💬 Retro dialogue boxes and a heart-based HUD
+- 🧭 AUTO mode that walks you to the next place
 
-## Controls
+---
 
-- Move: arrow keys / WASD, or the on-screen pad
-- Jeep: press the jeep button when nearby (Enter/Exit)
-- **Auto**: tap near the jeep to be driven to the next house
+### 📜 License
 
-## Auto drive
+**All Rights Reserved.** This project is a portfolio piece, shown for display and evaluation only.
+Copying, forking, modifying, or reusing any part of it, commercially or personally, is not allowed without written permission. See [LICENSE](LICENSE).
 
-- Boards the jeep and switches to first-person view while driving
-- Parks beside the road (off the road, parallel to it) near the house
-- Returns to the normal view when stopped, then you step out
-- **Stop auto** hands control back to you at any time
-
-## Files
-
-- `index.html` – page and icons
-- `game.js` – game logic
-- `style.css` – styles
-
-## License
-
-See `LICENSE`.
+<p align="center"><sub>© 2026 bhawan-kavinda</sub></p>
