@@ -1,56 +1,25 @@
 <!DOCTYPE html>
-<html lang="si">
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<title>Village Walk - 16-bit Demo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Portfolio Village 2D (demo)</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
-<symbol id="i-fullscreen" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></symbol>
-<symbol id="i-skip" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></symbol>
-<symbol id="i-play" viewBox="0 0 24 24"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><rect x="2" y="6" width="20" height="12" rx="2"/></symbol>
-<symbol id="i-map" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></symbol>
-<symbol id="i-auto" viewBox="0 0 24 24"><circle cx="5.5" cy="19" r="2.2"/><path d="M8.7 19H14a4 4 0 0 0 4-4" stroke-dasharray="2 2.4"/><path d="M18 2.5a4.6 4.6 0 0 1 4.6 4.6c0 3.5-4.6 7.9-4.6 7.9s-4.6-4.4-4.6-7.9A4.6 4.6 0 0 1 18 2.5z"/><circle cx="18" cy="7.1" r="1.7"/></symbol>
-<symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></symbol>
-<symbol id="i-jeep" viewBox="0 0 24 24"><path d="M2.5 16.5v-5l2.2-4.5h9.8l3.6 4.5h3.4v5h-1.7M15.2 16.5H8.8M4.2 16.5H2.5"/><path d="M9.5 7v4.5M4.2 11.5h14.5"/><circle cx="6.5" cy="17" r="2.3"/><circle cx="17.5" cy="17" r="2.3"/></symbol>
-<symbol id="i-exit" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
-<symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="#f2c230" stroke="#b8872b"/></symbol>
-<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
-<symbol id="i-up" viewBox="0 0 24 24"><path d="M12 6 20 18H4Z" fill="currentColor"/></symbol>
-<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 18 4 6h16Z" fill="currentColor"/></symbol>
-<symbol id="i-left" viewBox="0 0 24 24"><path d="M6 12 18 4v16Z" fill="currentColor"/></symbol>
-<symbol id="i-right" viewBox="0 0 24 24"><path d="M18 12 6 4v16Z" fill="currentColor"/></symbol>
-</defs></svg>
-<main>
-<header>
-<h1>Nimal's Village 2D <small style="font-weight:400;opacity:.7">(demo)</small></h1>
-<div class="hb"><div class="gw"><button id="gear" type="button" aria-label="Settings" aria-expanded="false"><svg class="ic" aria-hidden="true"><use href="#i-gear"/></svg></button><div id="menu" hidden><button id="fsb" type="button" aria-label="Full screen"><svg class="ic" aria-hidden="true"><use href="#i-fullscreen"/></svg> Full screen</button><button id="snd" type="button">Sound: on</button><button id="drv" type="button">Drive: Auto</button></div></div><button id="toggle" type="button">Skip <svg class="ic" aria-hidden="true"><use href="#i-skip"/></svg></button></div>
-</header>
-<div id="game">
-<div class="stage">
-<canvas id="c" aria-label="Walkable 2D portfolio village"></canvas>
-<div id="hud"></div>
-<button id="jbtn" type="button" hidden></button>
-<button id="abtn" type="button" aria-label="Stop auto drive"><svg class="ic" aria-hidden="true"><use href="#i-stop"/></svg> Stop auto</button>
-<button id="mbtn" type="button" hidden aria-label="Hold to see map"><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg></button>
-<div id="wheel" hidden aria-label="Steering wheel"><img src="wheel.svg" width="84" height="84" alt="" draggable="false"></div>
-<div id="panel" role="dialog" aria-modal="true"><div class="card" id="card"></div></div>
-<div id="start" class="on"><div class="card"><h2>Welcome to the village</h2><p>Walk the path, collect every coin and visit all three houses.</p><button type="button" id="go">Start</button></div></div>
+<h1>VILLAGE WALK &middot; 16-BIT DEMO</h1>
+<div id="w"><canvas id="c" width="320" height="240"></canvas>
+<div id="bn" hidden></div><div id="hud"><span id="hudhp"></span><span id="hudtm"></span></div><div id="go" hidden><b>GAME OVER</b><span id="got"></span><span>Press A to retry</span></div><div id="dlg" hidden><b id="nm"></b><span id="tx"></span><i><img src="svg/dialog-arrow.svg" width="10" height="10" alt=""></i></div></div>
+<div id="pad">
+<div id="dp">
+<span></span><button data-k="up" aria-label="Up"><img src="svg/arrow.svg" alt=""></button><span></span>
+<button data-k="left" aria-label="Left"><img style="transform:rotate(-90deg)" src="svg/arrow.svg" alt=""></button><span></span><button data-k="right" aria-label="Right"><img style="transform:rotate(90deg)" src="svg/arrow.svg" alt=""></button>
+<span></span><button data-k="down" aria-label="Down"><img style="transform:rotate(180deg)" src="svg/arrow.svg" alt=""></button><span></span>
 </div>
-<p id="hint">Arrow keys / WASD or buttons. Go near the jeep: tap <svg class="ic" aria-hidden="true"><use href="#i-auto"/></svg> to be driven to the next house, or press E to drive yourself. In the jeep (driver view): <svg class="ic" aria-hidden="true"><use href="#i-up"/></svg> forward, <svg class="ic" aria-hidden="true"><use href="#i-down"/></svg> brake/reverse, <svg class="ic" aria-hidden="true"><use href="#i-left"/></svg> <svg class="ic" aria-hidden="true"><use href="#i-right"/></svg>.</p>
-<div class="pad" aria-label="Controls">
-<button class="u" data-k="up" aria-label="Up"><svg class="ic" aria-hidden="true"><use href="#i-up"/></svg></button>
-<button class="l" data-k="left" aria-label="Left"><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg></button>
-<button class="d" data-k="down" aria-label="Down"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></button>
-<button class="r" data-k="right" aria-label="Right"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></button>
+<small>Arrows / WASD to move<br>Space = Talk<br>AUTO = go to next place</small>
+<button id="au">AUTO</button>
+<button id="a">A</button>
 </div>
-</div>
-<div id="plain"></div>
-</main>
-<script src="game.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
