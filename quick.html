@@ -38,6 +38,18 @@ summary::-webkit-details-marker{display:none}summary::after{content:"+";font-siz
 summary em{font-style:normal;font-size:11px;background:var(--btn);color:#fff;border-radius:4px;padding:0 7px;margin-left:auto}
 details>.in{background:var(--card);border-top:2px solid #000;padding:6px 12px 8px}
 .sm{color:var(--mut);font-size:13px}
+#menu-btn{position:fixed;z-index:8;top:calc(env(safe-area-inset-top,0px) + 8px);right:8px;height:30px;padding:0 10px;border:3px solid #000;border-radius:6px;background:#3a2868;color:#fff;font:700 12px "Courier New",ui-monospace,monospace;letter-spacing:.5px;box-shadow:inset 0 2px 0 rgba(255,255,255,.28),inset 0 -3px 0 rgba(0,0,0,.35);-webkit-tap-highlight-color:transparent}
+nav{padding-right:76px}
+#start{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));background:rgba(8,5,16,.8)}
+#start[hidden]{display:none}
+.st-card{width:min(100%,400px);text-align:center;background:var(--card);color:var(--fg);border:4px solid #000;border-radius:8px;box-shadow:0 0 0 3px var(--btn),0 14px 36px rgba(0,0,0,.55);padding:22px 20px 18px;animation:shin .18s ease-out}
+@keyframes shin{from{transform:translateY(24px) scale(.97);opacity:0}}
+#st-av{display:block;margin:0 auto 10px;width:72px;height:72px;image-rendering:pixelated;background:rgba(0,0,0,.25);border:3px solid #000;border-radius:8px;box-shadow:0 0 0 3px #ffd84a}
+.st-card h2{margin:0 0 6px;font:700 20px/1.3 "Courier New",ui-monospace,monospace}
+.st-card p{margin:0 0 16px;color:var(--mut);font-size:14px}
+.st-card p.st-intro{margin:2px 0 12px;padding-bottom:12px;border-bottom:2px dashed var(--line);color:var(--fg);font-weight:600}
+#st-play{display:flex;align-items:center;justify-content:center;height:68px;border-radius:12px;background:#c43a3a;color:#fff;border:3px solid #000;text-decoration:none;font:700 20px "Courier New",ui-monospace,monospace;letter-spacing:.5px;box-shadow:inset 0 3px 0 rgba(255,255,255,.28),inset 0 -4px 0 rgba(0,0,0,.35)}
+#st-stay{display:inline-block;margin-top:16px;padding:6px 8px;color:var(--mut);font-size:14px;text-underline-offset:3px}
 footer{text-align:center;color:var(--mut);font-size:12px;padding:0 12px 30px}
 </style>
 </head>
@@ -51,6 +63,17 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:0 12px 30px}
 <nav id="nav" class="mono"></nav>
 <main id="main"></main>
 <footer class="mono">Same data as the village books (json/*.json)</footer>
+<button id="menu-btn" type="button" aria-label="Open menu: play or quick view">MENU</button>
+<div id="start" hidden role="dialog" aria-modal="true" aria-labelledby="st-t">
+<div class="st-card">
+<canvas id="st-av" width="24" height="24" aria-hidden="true"></canvas>
+<h2 id="st-t">Bhawan Kavinda</h2>
+<p class="st-intro" id="st-intro">Developer &middot; Sri Lanka</p>
+<p>Want to play the game, or just see the details quickly?</p>
+<a id="st-play" href="index.html#play">&#9654; PLAY THE GAME</a>
+<a id="st-stay" href="#">Stay in Quick view</a>
+</div>
+</div>
 <script>
 /* Sections = the same json files the game books use. Add a line here + a json file to add a section. */
 const SECS=[['home','Home'],['school','School'],['lab','Science Lab'],['museum','Museum'],['tower','Comm Tower'],['portoffice','Port Office']];
@@ -81,7 +104,7 @@ function body(d,into){
   const a=el('a','',label);a.href='#'+n;nav.append(a);
   const sec=el('section','bk');sec.id=n;sec.append(el('h2','mono',label));const in_=el('div','in');
   if(res[i])body(res[i],in_);else in_.append(fail(n));sec.append(in_);main.append(sec)});
- if(res[0]){document.getElementById('nm').textContent=res[0].title||'Quick View';document.title=(res[0].title||'Portfolio')+' - Quick View'}
+ if(res[0]){const f={};for(const s of res[0].sections||[])if(s.type==='fields')for(const x of s.items)f[x.label]=x.value;if(res[0].title)document.getElementById('st-t').textContent=res[0].title;const l=[f.Role,f.Location].filter(Boolean).join(' \u00b7 ');if(l)document.getElementById('st-intro').textContent=l;document.getElementById('nm').textContent=res[0].title||'Quick View';document.title=(res[0].title||'Portfolio')+' - Quick View'}
  let cur=-1;const links=[...nav.children],secs=SECS.map(([n])=>document.getElementById(n));
  const spy=()=>{const y=scrollY+90;let k=0;secs.forEach((s,i)=>{if(s.offsetTop<=y)k=i});if(k!==cur){cur=k;links.forEach((a,i)=>a.classList.toggle('on',i===k));const a=links[k];nav.scrollTo({left:a.offsetLeft-(nav.clientWidth-a.offsetWidth)/2})}};
  links.forEach((a,i)=>a.addEventListener('click',e=>{e.preventDefault();secs[i].scrollIntoView({behavior:'smooth'})}));
@@ -96,7 +119,15 @@ function body(d,into){
  P(K,x,y+7,4,5);P(C.shirt,x+1,y+8,2,2);P(sk,x+1,y+10,2,1);P(K,x+13,y+7,4,5);P(sh,x+14,y+8,2,2);P(sk,x+14,y+10,2,1);
  P(K,x+3,y+6,11,5);P(C.shirt,x+4,y+7,9,3);P(sh,x+11,y+7,2,3);P(sh,x+4,y+9,9,1);
  P(K,x+3,y,11,7);P(sk,x+4,y+1,9,5);P(dk(sk,.86),x+4,y+5,9,1);
- P(hr,x+4,y+1,9,2);P(hd,x+4,y+2,9,1);P(dk(hr,1.35),x+5,y+1,3,1);P(hr,x+4,y+3,1,2);P(hr,x+12,y+3,1,2);P(K,x+6,y+3,1,2);P(K,x+10,y+3,1,2);P('#f0a090',x+5,y+5,1,1);P('#f0a090',x+11,y+5,1,1);P(dk(sk,.7),x+8,y+5,1,1)})();
+ P(hr,x+4,y+1,9,2);P(hd,x+4,y+2,9,1);P(dk(hr,1.35),x+5,y+1,3,1);P(hr,x+4,y+3,1,2);P(hr,x+12,y+3,1,2);P(K,x+6,y+3,1,2);P(K,x+10,y+3,1,2);P('#f0a090',x+5,y+5,1,1);P('#f0a090',x+11,y+5,1,1);P(dk(sk,.7),x+8,y+5,1,1);document.getElementById('st-av').getContext('2d').drawImage(document.getElementById('av'),0,0)})();
+</script>
+<script>
+/* MENU popup: same as the game (Play / stay in Quick view) */
+(()=>{const ST=document.getElementById('start'),close=()=>{ST.hidden=true};
+ document.getElementById('menu-btn').addEventListener('click',()=>{ST.hidden=false});
+ document.getElementById('st-stay').addEventListener('click',e=>{e.preventDefault();close()});
+ ST.addEventListener('click',e=>{if(e.target===ST)close()});
+ addEventListener('keydown',e=>{if(e.key==='Escape'&&!ST.hidden)close()})})();
 </script>
 </body>
 </html>
