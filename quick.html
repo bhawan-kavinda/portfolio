@@ -8,7 +8,7 @@
 :root{--bg:#efe6d0;--card:#f8f1dc;--fg:#2b2218;--mut:#7a6a52;--line:rgba(43,34,24,.18);--btn:#5b3f8c;--chip:#e9dcf7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17111f;--card:#211a2f;--fg:#efe6d0;--mut:#a99dbd;--line:rgba(239,230,208,.16);--chip:#3a2d57}}
 :root[data-theme="dark"]{--bg:#17111f;--card:#211a2f;--fg:#efe6d0;--mut:#a99dbd;--line:rgba(239,230,208,.16);--chip:#3a2d57}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 60px)}
+*{box-sizing:border-box}html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 60px)}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,-apple-system,sans-serif}
 .mono{font-family:"Courier New",ui-monospace,monospace}
 header{background:var(--btn);color:#fff;border-bottom:4px solid #000;padding:18px 16px 14px;text-align:center}
@@ -82,8 +82,9 @@ function body(d,into){
   const sec=el('section','bk');sec.id=n;sec.append(el('h2','mono',label));const in_=el('div','in');
   if(res[i])body(res[i],in_);else in_.append(fail(n));sec.append(in_);main.append(sec)});
  if(res[0]){document.getElementById('nm').textContent=res[0].title||'Quick View';document.title=(res[0].title||'Portfolio')+' - Quick View'}
- const links=[...nav.children],secs=SECS.map(([n])=>document.getElementById(n));
- const spy=()=>{const y=scrollY+90;let k=0;secs.forEach((s,i)=>{if(s.offsetTop<=y)k=i});links.forEach((a,i)=>a.classList.toggle('on',i===k));links[k].scrollIntoView({block:'nearest',inline:'center'})};
+ let cur=-1;const links=[...nav.children],secs=SECS.map(([n])=>document.getElementById(n));
+ const spy=()=>{const y=scrollY+90;let k=0;secs.forEach((s,i)=>{if(s.offsetTop<=y)k=i});if(k!==cur){cur=k;links.forEach((a,i)=>a.classList.toggle('on',i===k));const a=links[k];nav.scrollTo({left:a.offsetLeft-(nav.clientWidth-a.offsetWidth)/2})}};
+ links.forEach((a,i)=>a.addEventListener('click',e=>{e.preventDefault();secs[i].scrollIntoView({behavior:'smooth'})}));
  addEventListener('scroll',spy,{passive:true});spy();
 })();
 /* same pixel character as the game player (p.c in script.js) */

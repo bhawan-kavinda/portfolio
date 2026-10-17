@@ -381,3 +381,10 @@ const ST=document.getElementById('start');
 function closeStart(){startOpen=false;ST.hidden=true}
 ST.hidden=!startOpen;
 document.getElementById('st-play').addEventListener('click',closeStart);
+
+/* popup profile: the game character + name/role/location from json/home.json */
+drawChar(document.getElementById('st-av').getContext('2d'),12,22,0,0,p.c);
+fetch('json/home.json').then(r=>r.json()).then(d=>{
+ if(d.title)document.getElementById('st-t').textContent=d.title;
+ const f={};for(const s of d.sections||[])if(s.type==='fields')for(const x of s.items)f[x.label]=x.value;
+ const l=[f.Role,f.Location].filter(Boolean).join(' \u00b7 ');if(l)document.getElementById('st-intro').textContent=l}).catch(()=>{});
