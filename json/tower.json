@@ -1,0 +1,50 @@
+{
+  "title": "Comm Tower",
+  "subtitle": "Tower · my communities",
+  "sections": [
+    {
+      "heading": "join us",
+      "type": "links",
+      "items": [
+        {
+          "label": "Discord",
+          "desc": "Chat with the community",
+          "url": "https://example.com/discord"
+        },
+        {
+          "label": "Telegram",
+          "desc": "Announcements and updates",
+          "url": "https://example.com/telegram"
+        },
+        {
+          "label": "WhatsApp group",
+          "desc": "Quick discussions",
+          "url": "https://example.com/whatsapp"
+        }
+      ]
+    },
+    {
+      "heading": "follow",
+      "type": "links",
+      "items": [
+        {
+          "label": "YouTube",
+          "desc": "Videos and tutorials",
+          "url": "https://example.com/youtube"
+        },
+        {
+          "label": "Facebook page",
+          "desc": "News and posts",
+          "url": "https://example.com/facebook"
+        }
+      ]
+    },
+    {
+      "heading": "note",
+      "type": "list",
+      "items": [
+        "Sample links. Edit json/tower.json with your real community links."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "title": "Science Lab",
+  "subtitle": "Lab · the book on the table",
+  "sections": [
+    {
+      "heading": "web",
+      "type": "tags",
+      "items": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ]
+    },
+    {
+      "heading": "web notes",
+      "type": "list",
+      "items": [
+        "What you learned: layouts, canvas games, JSON-driven pages",
+        "How you learned: YouTube, docs, building small projects"
+      ]
+    },
+    {
+      "heading": "android",
+      "type": "tags",
+      "items": [
+        "Kotlin",
+        "Jetpack Compose",
+        "WebView"
+      ]
+    },
+    {
+      "heading": "android notes",
+      "type": "list",
+      "items": [
+        "Add the topics you studied here"
+      ]
+    },
+    {
+      "heading": "tools",
+      "type": "tags",
+      "items": [
+        "Git",
+        "GitHub",
+        "Termux"
+      ]
+    },
+    {
+      "heading": "learning now",
+      "type": "list",
+      "items": [
+        "Sample text. Add or rename categories in json/lab.json: each section is one category."
+      ]
+    }
+  ]
+}

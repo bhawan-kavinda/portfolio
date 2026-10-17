@@ -1,0 +1,84 @@
+{
+  "title": "School",
+  "subtitle": "School · the book on the table",
+  "sections": [
+    {
+      "heading": "schools",
+      "type": "fields",
+      "items": [
+        {
+          "label": "Primary",
+          "value": "Your primary school name"
+        },
+        {
+          "label": "O/L school",
+          "value": "Your O/L school name"
+        },
+        {
+          "label": "A/L school",
+          "value": "Your A/L school name"
+        },
+        {
+          "label": "Town",
+          "value": "Your town, Sri Lanka"
+        }
+      ]
+    },
+    {
+      "heading": "ol results",
+      "type": "fields",
+      "items": [
+        {
+          "label": "Year",
+          "value": "20XX"
+        },
+        {
+          "label": "Subject 1",
+          "value": "A"
+        },
+        {
+          "label": "Subject 2",
+          "value": "A"
+        },
+        {
+          "label": "Subject 3",
+          "value": "B"
+        }
+      ]
+    },
+    {
+      "heading": "al results",
+      "type": "fields",
+      "items": [
+        {
+          "label": "Year",
+          "value": "20XX"
+        },
+        {
+          "label": "Stream",
+          "value": "Your stream"
+        },
+        {
+          "label": "Subject 1",
+          "value": "A"
+        },
+        {
+          "label": "Subject 2",
+          "value": "B"
+        },
+        {
+          "label": "Subject 3",
+          "value": "C"
+        }
+      ]
+    },
+    {
+      "heading": "other",
+      "type": "list",
+      "items": [
+        "Clubs, prizes, school activities go here",
+        "Sample text. Edit json/school.json to put in your real details."
+      ]
+    }
+  ]
+}

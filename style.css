@@ -60,3 +60,15 @@ small{opacity:.7;font-size:11px;text-align:center;line-height:1.4;padding:0 6px}
 .tags span{background:var(--sh-chip);border:2px solid #000;border-radius:4px;padding:1px 9px;font:700 13px/1.6 "Courier New",ui-monospace,monospace}
 .sh-msg{margin:14px 0 0}
 .sh-msg.sm{font-size:13px;color:var(--sh-mut)}
+
+.sh-back{width:auto;height:auto;margin:12px 0 0;padding:3px 12px;border-radius:6px;font-size:13px}
+.lnks,.cards{display:grid;gap:10px;padding-bottom:8px}
+.lnk,.card{display:block;text-decoration:none;color:var(--sh-fg);background:var(--sh-chip);border:2px solid #000;border-radius:6px;padding:9px 12px;box-shadow:0 3px 0 rgba(0,0,0,.35);outline-offset:2px}
+.lnk b,.card b{display:block;font:700 14px/1.4 "Courier New",ui-monospace,monospace;overflow-wrap:anywhere}
+.lnk span,.card p{display:block;margin:2px 0 0;font-size:13px;line-height:1.5;color:var(--sh-mut)}
+.card{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.card:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+.card.off{opacity:.65;cursor:default}
+.card .ch{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card em{flex:none;font:700 11px "Courier New",ui-monospace,monospace;font-style:normal;background:var(--btn);color:#fff;border-radius:4px;padding:0 7px}
+.card p.sm{font-size:12px}

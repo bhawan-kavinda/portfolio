@@ -1,0 +1,42 @@
+{
+  "title": "Project Two",
+  "subtitle": "Project · app",
+  "sections": [
+    {
+      "heading": "info",
+      "type": "fields",
+      "items": [
+        {
+          "label": "Type",
+          "value": "App"
+        },
+        {
+          "label": "Status",
+          "value": "In progress"
+        },
+        {
+          "label": "Stack",
+          "value": "Edit me"
+        }
+      ]
+    },
+    {
+      "heading": "about",
+      "type": "text",
+      "items": [
+        "Project details go here. Edit this file when you send me the real details."
+      ]
+    },
+    {
+      "heading": "links",
+      "type": "links",
+      "items": [
+        {
+          "label": "Source code",
+          "desc": "GitHub repository",
+          "url": "https://github.com/bhawan-kavinda"
+        }
+      ]
+    }
+  ]
+}

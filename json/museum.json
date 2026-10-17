@@ -1,0 +1,30 @@
+{
+  "title": "Museum",
+  "subtitle": "Museum · my projects",
+  "sections": [
+    {
+      "heading": "projects",
+      "type": "cards",
+      "items": [
+        {
+          "title": "Village Walk",
+          "tag": "Game",
+          "summary": "This 16-bit village portfolio.",
+          "file": "museum/village-walk"
+        },
+        {
+          "title": "Project Two",
+          "tag": "App",
+          "summary": "Short one-line summary.",
+          "file": "museum/project-2"
+        },
+        {
+          "title": "Project Three",
+          "tag": "Tool",
+          "summary": "Short one-line summary.",
+          "file": "museum/project-3"
+        }
+      ]
+    }
+  ]
+}
