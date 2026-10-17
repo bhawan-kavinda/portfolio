@@ -74,8 +74,8 @@ small{opacity:.7;font-size:11px;text-align:center;line-height:1.4;padding:0 6px}
 .card p.sm{font-size:12px}
 
 #menu-btn{position:fixed;z-index:5;top:calc(env(safe-area-inset-top,0px) + 8px);right:8px;width:auto;height:30px;padding:0 10px;border-radius:6px;font-size:12px;letter-spacing:.5px}
-#start{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));background:rgba(8,5,16,.8)}
-#start[hidden]{display:none}
+#start,#howto{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));background:rgba(8,5,16,.8)}
+#start[hidden],#howto[hidden]{display:none}
 .st-card{width:min(100%,400px);text-align:center;background:var(--sh-bg);color:var(--sh-fg);border:4px solid #000;border-radius:8px;box-shadow:0 0 0 3px var(--btn),0 14px 36px rgba(0,0,0,.55);padding:22px 20px 18px;animation:shin .18s ease-out}
 .st-card h2{margin:0 0 6px;font:700 20px/1.3 "Courier New",ui-monospace,monospace}
 .st-card p{margin:0 0 18px;color:var(--sh-mut);font-size:14px}
@@ -84,3 +84,10 @@ small{opacity:.7;font-size:11px;text-align:center;line-height:1.4;padding:0 6px}
 .st-card p.st-ask{margin:0 0 16px}
 #st-play{width:100%;height:68px;border-radius:12px;background:#c43a3a;font-size:20px;letter-spacing:.5px}
 #st-quick{display:inline-block;margin-top:16px;padding:6px 8px;color:var(--sh-mut);font-size:14px;text-underline-offset:3px;-webkit-tap-highlight-color:transparent}
+#au{margin-left:auto;margin-right:12px}
+.hw{list-style:none;margin:0 0 18px;padding:0;text-align:left}
+.hw li{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--sh-line);font-size:14px}
+.hw li:last-child{border-bottom:0}
+.hw b{font:700 12px/1.6 "Courier New",ui-monospace,monospace;background:var(--sh-chip);border:2px solid #000;border-radius:4px;padding:0 8px}
+.hw span{font-weight:600;text-align:right}
+#hw-ok{width:100%;height:56px;border-radius:12px;background:#2f8f4a;font-size:18px;letter-spacing:.5px}

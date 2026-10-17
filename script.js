@@ -117,14 +117,14 @@ function blocked(x,y,me){for(const[ax,ay]of[[-5,-4],[5,-4],[-5,2],[5,2]])if(soli
 
 const keys={up:0,down:0,left:0,right:0};
 const KM={ArrowUp:'up',w:'up',W:'up',ArrowDown:'down',s:'down',S:'down',ArrowLeft:'left',a:'left',A:'left',ArrowRight:'right',d:'right',D:'right'};
-addEventListener('keydown',e=>{if(startOpen){if(e.key==='Enter'||e.key===' '||(e.key==='Escape'&&stMenu)){e.preventDefault();closeStart()}return}if(sheetOpen){if(e.key==='Escape')closeSheet();return}if(KM[e.key]){keys[KM[e.key]]=1;e.preventDefault()}else if([' ','Enter','z','Z'].includes(e.key)){if(!e.repeat)act();e.preventDefault()}});
+addEventListener('keydown',e=>{if(startOpen){if(e.key==='Enter'||e.key===' '||(e.key==='Escape'&&(stMenu||!HW.hidden))){e.preventDefault();HW.hidden?closeStart():closeHow()}return}if(sheetOpen){if(e.key==='Escape')closeSheet();return}if(KM[e.key]){keys[KM[e.key]]=1;e.preventDefault()}else if([' ','Enter','z','Z'].includes(e.key)){if(!e.repeat)act();e.preventDefault()}});
 addEventListener('keyup',e=>{if(KM[e.key])keys[KM[e.key]]=0});
 addEventListener('contextmenu',e=>e.preventDefault());
 document.querySelectorAll('[data-k]').forEach(b=>{const k=b.dataset.k;b.addEventListener('pointerdown',e=>{e.preventDefault();keys[k]=1});['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>keys[k]=0))});
 document.getElementById('a').addEventListener('pointerdown',e=>{e.preventDefault();act()});
 document.getElementById('au').addEventListener('pointerdown',e=>{e.preventDefault();if(auto)auto=null;else startAuto()});
 
-let dlg=null,t=0,sheetOpen=false,startOpen=!/play/.test(location.hash),stMenu=false;
+let dlg=null,t=0,sheetOpen=false,startOpen=true,stMenu=false;
 const D=document.getElementById('dlg'),TX=document.getElementById('tx');
 function show(){dlg.f=dlg.n.l[dlg.i];dlg.p=0;document.getElementById('nm').textContent=dlg.n.name;TX.textContent='';D.classList.remove('done');D.hidden=false}
 function typeDlg(){if(dlg&&dlg.p<dlg.f.length){dlg.p+=.7;const q=Math.min(dlg.f.length,dlg.p|0);TX.textContent=dlg.f.slice(0,q);if(q>=dlg.f.length)D.classList.add('done')}}
@@ -379,12 +379,16 @@ requestAnimationFrame(loop);
 /* start popup: Play the game / Quick view (quick.html). index.html#play skips it. */
 const ST=document.getElementById('start');
 const STP=document.getElementById('st-play');
-function closeStart(){startOpen=false;stMenu=false;ST.hidden=true}
+const HW=document.getElementById('howto');let howDone=false;
+function openHow(){startOpen=true;HW.hidden=false}
+function closeHow(){howDone=true;HW.hidden=true;startOpen=false}
+function closeStart(){ST.hidden=true;stMenu=false;if(howDone)startOpen=false;else openHow()}
 function openStart(){if(startOpen||sheetOpen)return;startOpen=true;stMenu=true;keys.up=keys.down=keys.left=keys.right=0;auto=null;STP.textContent='\u25b6 CONTINUE PLAYING';ST.hidden=false}
-ST.hidden=!startOpen;
+{const q=/play/.test(location.hash);ST.hidden=q;if(q)openHow()}
 STP.addEventListener('click',closeStart);
 ST.addEventListener('click',e=>{if(stMenu&&e.target===ST)closeStart()});
 document.getElementById('menu-btn').addEventListener('click',openStart);
+document.getElementById('hw-ok').addEventListener('click',closeHow);
 
 /* popup profile: the game character + name/role/location from json/home.json */
 drawChar(document.getElementById('st-av').getContext('2d'),12,22,0,0,p.c);

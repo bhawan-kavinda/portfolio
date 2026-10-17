@@ -17,7 +17,6 @@
 <button data-k="left" aria-label="Left"><img style="transform:rotate(-90deg)" src="svg/arrow.svg" alt=""></button><span></span><button data-k="right" aria-label="Right"><img style="transform:rotate(90deg)" src="svg/arrow.svg" alt=""></button>
 <span></span><button data-k="down" aria-label="Down"><img style="transform:rotate(180deg)" src="svg/arrow.svg" alt=""></button><span></span>
 </div>
-<small>Arrows / WASD to move<br>Space = Talk<br>AUTO = go to next place</small>
 <button id="au">AUTO</button>
 <button id="a">A</button>
 </div>
@@ -27,6 +26,17 @@
 <div class="sh-ttl"><div id="sh-title" class="sh-t"></div><p id="sh-sub"></p></div>
 <button id="sh-x" class="sh-x" type="button" aria-label="Close"><img src="svg/close.svg" alt=""></button></header>
 <div id="sh-body" class="sh-body"></div>
+</div>
+</div>
+<div id="howto" hidden role="dialog" aria-modal="true" aria-labelledby="hw-t">
+<div class="st-card">
+<h2 id="hw-t">How to play</h2>
+<ul class="hw">
+<li><b>D-pad / Arrows / WASD</b><span>Move</span></li>
+<li><b>A button / Space</b><span>Talk, open the book</span></li>
+<li><b>AUTO button</b><span>Go to the next place</span></li>
+</ul>
+<button id="hw-ok" type="button">GOT IT</button>
 </div>
 </div>
 <div id="start" role="dialog" aria-modal="true" aria-labelledby="st-t">
