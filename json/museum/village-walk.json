@@ -16,7 +16,7 @@
         },
         {
           "label": "Stack",
-          "value": "Edit me"
+          "value": "HTML, CSS, JavaScript (canvas)"
         }
       ]
     },
@@ -24,7 +24,7 @@
       "heading": "about",
       "type": "text",
       "items": [
-        "Project details go here. Edit this file when you send me the real details."
+        "A tiny 16-bit style village you can walk around in. Talk to villagers, explore the map, and dodge the foes after dark. It doubles as my portfolio."
       ]
     },
     {

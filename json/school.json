@@ -12,15 +12,15 @@
         },
         {
           "label": "O/L school",
-          "value": "Your O/L school name"
+          "value": "Karangoda M.V."
         },
         {
           "label": "A/L school",
-          "value": "Your A/L school name"
+          "value": "Siri Piyarathana Central College"
         },
         {
           "label": "Town",
-          "value": "Your town, Sri Lanka"
+          "value": "Padukka, Sri Lanka"
         }
       ]
     },
@@ -30,19 +30,23 @@
       "items": [
         {
           "label": "Year",
-          "value": "20XX"
+          "value": "2022 (2023)"
         },
         {
-          "label": "Subject 1",
+          "label": "Maths",
           "value": "A"
         },
         {
-          "label": "Subject 2",
-          "value": "A"
+          "label": "Science",
+          "value": "C"
         },
         {
-          "label": "Subject 3",
-          "value": "B"
+          "label": "English",
+          "value": "C"
+        },
+        {
+          "label": "Total",
+          "value": "3A, 2B, 4C"
         }
       ]
     },
@@ -52,22 +56,22 @@
       "items": [
         {
           "label": "Year",
-          "value": "20XX"
+          "value": "2025"
         },
         {
           "label": "Stream",
-          "value": "Your stream"
+          "value": "Technology"
         },
         {
-          "label": "Subject 1",
-          "value": "A"
+          "label": "Science for Technology",
+          "value": "C"
         },
         {
-          "label": "Subject 2",
-          "value": "B"
+          "label": "ICT",
+          "value": "C"
         },
         {
-          "label": "Subject 3",
+          "label": "Engineering Technology",
           "value": "C"
         }
       ]
@@ -75,10 +79,7 @@
     {
       "heading": "other",
       "type": "list",
-      "items": [
-        "Clubs, prizes, school activities go here",
-        "Sample text. Edit json/school.json to put in your real details."
-      ]
+      "items": []
     }
   ]
 }

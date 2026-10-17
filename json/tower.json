@@ -7,19 +7,19 @@
       "type": "links",
       "items": [
         {
-          "label": "Discord",
-          "desc": "Chat with the community",
-          "url": "https://example.com/discord"
-        },
-        {
           "label": "Telegram",
           "desc": "Announcements and updates",
-          "url": "https://example.com/telegram"
+          "icon": "telegram"
         },
         {
-          "label": "WhatsApp group",
+          "label": "WhatsApp",
           "desc": "Quick discussions",
-          "url": "https://example.com/whatsapp"
+          "icon": "whatsapp"
+        },
+        {
+          "label": "Reddit",
+          "desc": "Community discussions",
+          "icon": "reddit"
         }
       ]
     },
@@ -28,22 +28,27 @@
       "type": "links",
       "items": [
         {
-          "label": "YouTube",
-          "desc": "Videos and tutorials",
-          "url": "https://example.com/youtube"
+          "label": "X",
+          "desc": "News and posts",
+          "icon": "x"
         },
         {
-          "label": "Facebook page",
-          "desc": "News and posts",
-          "url": "https://example.com/facebook"
+          "label": "LinkedIn",
+          "desc": "Professional profile",
+          "icon": "linkedin"
+        },
+        {
+          "label": "Portfolio",
+          "desc": "b-kavinda.is-a.dev",
+          "url": "https://b-kavinda.is-a.dev",
+          "icon": "portfolio"
+        },
+        {
+          "label": "GitHub",
+          "desc": "github.com/bhawan-kavinda",
+          "url": "https://github.com/bhawan-kavinda",
+          "icon": "github"
         }
-      ]
-    },
-    {
-      "heading": "note",
-      "type": "list",
-      "items": [
-        "Sample links. Edit json/tower.json with your real community links."
       ]
     }
   ]

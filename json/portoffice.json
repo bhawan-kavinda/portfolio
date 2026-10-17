@@ -8,8 +8,8 @@
       "items": [
         {
           "label": "Email",
-          "value": "hello@example.com",
-          "url": "mailto:hello@example.com"
+          "value": "kawindabhawan@gmail.com",
+          "url": "mailto:kawindabhawan@gmail.com"
         },
         {
           "label": "Phone",
@@ -28,25 +28,29 @@
         {
           "label": "GitHub",
           "desc": "github.com/bhawan-kavinda",
-          "url": "https://github.com/bhawan-kavinda"
+          "url": "https://github.com/bhawan-kavinda",
+          "icon": "github"
         },
         {
-          "label": "LinkedIn",
-          "desc": "Professional profile",
-          "url": "https://example.com/linkedin"
+          "label": "X",
+          "desc": "Posts and updates",
+          "icon": "x"
         },
         {
-          "label": "Facebook",
-          "desc": "Personal profile",
-          "url": "https://example.com/facebook"
+          "label": "Reddit",
+          "desc": "Reddit profile",
+          "icon": "reddit"
+        },
+        {
+          "label": "Telegram",
+          "desc": "Message me",
+          "icon": "telegram"
+        },
+        {
+          "label": "Patreon",
+          "desc": "Support my work",
+          "icon": "patreon"
         }
-      ]
-    },
-    {
-      "heading": "note",
-      "type": "list",
-      "items": [
-        "Sample text. Edit json/portoffice.json to put in your real details."
       ]
     }
   ]

@@ -337,7 +337,10 @@ function renderSheet(d,back,name){
   else if(s.type==='list'){const u=el('ul');for(const x of it)u.append(el('li','',x));sec.append(u)}
   else if(s.type==='links'){const w=el('div','lnks');
    for(const x of it){const a=el(safe(x.url)?'a':'div','lnk');if(safe(x.url)){a.href=x.url;a.target='_blank';a.rel='noopener noreferrer'}
-    a.append(el('b','',x.label+(safe(x.url)?' \u2197':'')));if(x.desc)a.append(el('span','',x.desc));w.append(a)}
+    const lb=el('b','',x.label+(safe(x.url)?' \u2197':'')),ds=x.desc?el('span','',x.desc):null;
+    if(x.icon&&/^[a-z0-9-]+$/.test(x.icon)){a.classList.add('ico');const im=el('img');im.src='svg/icons/'+x.icon+'.svg';im.alt='';im.width=28;im.height=28;const tx=el('div','lt');tx.append(lb);if(ds)tx.append(ds);a.append(im,tx)}
+    else{a.append(lb);if(ds)a.append(ds)}
+    w.append(a)}
    sec.append(w)}
   else if(s.type==='cards'){const w=el('div','cards');
    for(const x of it){const c=el('div','card'+(x.file?'':' off'));
