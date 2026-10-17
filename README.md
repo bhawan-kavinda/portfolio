@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="svg/banner.svg" alt="Village Walk - 16-bit Demo" width="100%">
+  <img src="svg/banner.svg" alt="Village Walk - Explore Bhawan's portfolio" width="100%">
 </p>
 
 <p align="center">
