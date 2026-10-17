@@ -1,0 +1,41 @@
+{
+  "title": "Bhawan Kavinda",
+  "subtitle": "Home · the book on the table",
+  "sections": [
+    {
+      "heading": "whoami",
+      "type": "fields",
+      "items": [
+        { "label": "Name", "value": "Bhawan Kavinda" },
+        { "label": "Username", "value": "bhawan-kavinda" },
+        { "label": "Role", "value": "Developer" },
+        { "label": "Location", "value": "Sri Lanka" },
+        { "label": "Languages", "value": "Sinhala, English" },
+        { "label": "Email", "value": "hello@example.com", "url": "mailto:hello@example.com" },
+        { "label": "GitHub", "value": "github.com/bhawan-kavinda", "url": "https://github.com/bhawan-kavinda" }
+      ]
+    },
+    {
+      "heading": "about",
+      "type": "text",
+      "items": [
+        "Hi! I build small games, apps and tools. This village is my portfolio, and every building shows a little of what I do.",
+        "Walk around, talk to the villagers and visit each place to learn more."
+      ]
+    },
+    {
+      "heading": "skills",
+      "type": "tags",
+      "items": ["HTML", "CSS", "JavaScript", "Kotlin", "Android"]
+    },
+    {
+      "heading": "other details",
+      "type": "list",
+      "items": [
+        "Currently building: Village Walk (this game)",
+        "Hobbies: coding, music, trying new tech",
+        "Sample text. Edit json/home.json to put in your real details."
+      ]
+    }
+  ]
+}
