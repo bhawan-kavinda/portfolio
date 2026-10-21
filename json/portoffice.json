@@ -34,11 +34,13 @@
         {
           "label": "X",
           "desc": "Posts and updates",
+          "url" : "https://x.com/BhKavinda"
           "icon": "x"
         },
         {
           "label": "Reddit",
           "desc": "Reddit profile",
+          "url" : "https://www.reddit.com/u/Bkavinda_2006/s/5lLhhZyKdB"
           "icon": "reddit"
         },
         {
